@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview-sample/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview-sample/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview-sample/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview-sample/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    }
+]

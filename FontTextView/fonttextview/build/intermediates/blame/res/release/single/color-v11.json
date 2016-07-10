@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

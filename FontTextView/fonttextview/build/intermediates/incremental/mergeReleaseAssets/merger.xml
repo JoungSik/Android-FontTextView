@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/src/main/assets"/><source path="/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/src/release/assets"/></dataSet></merger>
