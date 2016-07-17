@@ -4,16 +4,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.joung.fonttextview.R;
+import com.joung.fonttextview.util.FontUtil;
 
 public class FontTextView extends TextView {
-
-    private static final int NORMAL = -1;
-    private static final int REGULAR = 0;
-    private static final int BOLD = 1;
-
     public Context context;
     public int type;
 
@@ -47,15 +45,11 @@ public class FontTextView extends TextView {
 
     private void setFont(TypedArray typedArray) {
         int fontType = typedArray.getInt(R.styleable.FontTextView_type, -1);
-        switch (fontType) {
-            case NORMAL:
-                break;
-            case REGULAR:
-                this.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/en/regular.ttf"));
-                break;
-            case BOLD:
-                this.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/en/bold.ttf"));
-                break;
+        String fontPath = FontUtil.getFontType(fontType);
+        try {
+            this.setTypeface(Typeface.createFromAsset(context.getAssets(), fontPath));
+        } catch (Exception e) {
+            Log.v("TAG", "error - " + e.toString());
         }
     }
 }

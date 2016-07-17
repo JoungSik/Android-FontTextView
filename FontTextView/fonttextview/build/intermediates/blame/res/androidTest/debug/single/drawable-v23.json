@@ -2,9 +2,5 @@
     {
         "merged": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
         "source": "/Users/joungsik/jslab/Android-FontTextView/FontTextView/fonttextview/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-v23/abc_control_background_material.xml"
-    },
-    {
-        "merged": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
-        "source": "/Users/joungsik/jslab/font_textview/FontTextView/fonttextview/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-v23/abc_control_background_material.xml"
     }
 ]
