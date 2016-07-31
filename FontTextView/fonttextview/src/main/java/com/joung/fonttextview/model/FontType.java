@@ -1,6 +1,9 @@
 package com.joung.fonttextview.model;
 
 public class FontType {
+    public static final String FONT_TYPE_TTF = ".ttf";
+    public static final String FONT_TYPE_OTF = ".otf";
+
     public static final int REGULAR = 0;
     public static final int BOLD = 1;
     public static final int THIN = 2;

@@ -12,8 +12,8 @@ import com.joung.fonttextview.R;
 import com.joung.fonttextview.util.FontUtil;
 
 public class FontTextView extends TextView {
-    public Context context;
     public int type;
+    public Context context;
 
     public FontTextView(Context context) {
         super(context);
@@ -40,16 +40,10 @@ public class FontTextView extends TextView {
     private void getAttrs(AttributeSet attrs, int defStyle) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.FontTextView, defStyle, 0);
         setFont(typedArray);
-
     }
 
     private void setFont(TypedArray typedArray) {
         int fontType = typedArray.getInt(R.styleable.FontTextView_type, -1);
-        String fontPath = FontUtil.getFontType(fontType);
-        try {
-            this.setTypeface(Typeface.createFromAsset(context.getAssets(), fontPath));
-        } catch (Exception e) {
-            Log.v("TAG", "error - " + e.toString());
-        }
+        FontUtil.setFont(this, fontType);
     }
 }
