@@ -5,15 +5,10 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.joung.fonttextview.exception.NotSupportFontFileException;
 import com.joung.fonttextview.model.FontType;
-import com.joung.fonttextview.model.Language;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FontUtil {
@@ -22,11 +17,12 @@ public class FontUtil {
     private static final String PATH_FONT = "fonts/";
     private static final String SLASH = "/";
 
+    private static String[] koreaFontAssetList = new String[FontType.SUPPORT_FONT_TYPE_COUNT];
+    private static String[] englishFontAssetList = new String[FontType.SUPPORT_FONT_TYPE_COUNT];
+
     public static FontUtil mInstance = null;
 
-    public FontUtil() {
-        Log.v(TAG, "new Instance");
-    }
+    public FontUtil() {}
 
     public static FontUtil getInstance() {
         if (mInstance == null) {
@@ -37,21 +33,83 @@ public class FontUtil {
 
     public void getFontExtension(Context context) {
         try {
-            String[] koreaAssetList = context.getAssets().list(PATH_FONT + Language.korea);
-            String[] englishAssetList = context.getAssets().list(PATH_FONT + Language.english);
+            String[] koreaAssetList = context.getAssets().list(PATH_FONT + FontType.KOREA);
+            String[] englishAssetList = context.getAssets().list(PATH_FONT + FontType.ENGLISH);
 
-            ArrayList<String> mAssetList = new ArrayList<>();
-            mAssetList.addAll(Arrays.asList(koreaAssetList));
-            mAssetList.addAll(Arrays.asList(englishAssetList));
+            for (String koreaAsset : koreaAssetList) {
+                Pattern pattern = Pattern.compile(FontType.STRING_MATCH_REGULAR, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.REGULAR] = koreaAsset;
+                }
 
-            Pattern pattern = Pattern.compile("\\.(ttf)$", Pattern.CASE_INSENSITIVE);
-            for (String asset : mAssetList) {
-                Matcher m = pattern.matcher(asset);
-                if (!m.find()) {
-                    throw new NotSupportFontFileException(asset);
+                pattern = Pattern.compile(FontType.STRING_MATCH_BOLD, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.BOLD] = koreaAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_THIN, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.THIN] = koreaAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_MEDIUM, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.MEDIUM] = koreaAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_LIGHT, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.LIGHT] = koreaAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_BLACK, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.BLACK] = koreaAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_ITALIC, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(koreaAsset).find()) {
+                    koreaFontAssetList[FontType.ITALIC] = koreaAsset;
                 }
             }
-        } catch (IOException | NotSupportFontFileException e) {
+
+            for (String englishAsset : englishAssetList) {
+                Pattern pattern = Pattern.compile(FontType.STRING_MATCH_REGULAR, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.REGULAR] = englishAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_BOLD, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.BOLD] = englishAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_THIN, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.THIN] = englishAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_MEDIUM, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.MEDIUM] = englishAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_LIGHT, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.LIGHT] = englishAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_BLACK, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.BLACK] = englishAsset;
+                }
+
+                pattern = Pattern.compile(FontType.STRING_MATCH_ITALIC, Pattern.CASE_INSENSITIVE);
+                if (pattern.matcher(englishAsset).find()) {
+                    englishFontAssetList[FontType.ITALIC] = englishAsset;
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -70,40 +128,20 @@ public class FontUtil {
     }
 
     public static String getFontType(int fontType) {
-
         // Todo: Checking Support Locale.
         String locale = Locale.getDefault().getLanguage();
-        if (!locale.equals(Language.english) && !locale.equals(Language.korea)) {
-            Log.e(TAG, "Error - Not Support Device Locale.");
-            Log.e(TAG, "Error - then Default Local English");
+        if (!locale.equals(FontType.ENGLISH) && !locale.equals(FontType.KOREA)) {
+            Log.e(TAG, "Error - Not Support Device Locale. then Default Local English");
 
-            locale = Language.english;
+            locale = FontType.ENGLISH;
         }
 
         String path = PATH_FONT + locale + SLASH;
-        switch (fontType) {
-            case FontType.REGULAR:
-                path += FontType.STRING_REGULAR;
-                break;
-            case FontType.BOLD:
-                path += FontType.STRING_BOLD;
-                break;
-            case FontType.THIN:
-                path += FontType.STRING_THIN;
-                break;
-            case FontType.MEDIUM:
-                path += FontType.STRING_MEDIUM;
-                break;
-            case FontType.LIGHT:
-                path += FontType.STRING_LIGHT;
-                break;
-            case FontType.BLACK:
-                path += FontType.STRING_BLACK;
-                break;
-            case FontType.ITALIC:
-                path += FontType.STRING_ITALIC;
-                break;
+        if (locale.equals(FontType.KOREA)) {
+            path += koreaFontAssetList[fontType];
+        } else {
+            path += englishFontAssetList[fontType];
         }
-        return path + FontType.FONT_TYPE_TTF;
+        return path;
     }
 }
